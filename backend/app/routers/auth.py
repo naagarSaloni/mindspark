@@ -191,8 +191,10 @@ def forgot_password(
         "otp": otp,
         "expires": datetime.now() + timedelta(minutes=5)
     }
-
-    send_otp_email(email, otp)
+    try:
+        send_otp_email(email, otp) 
+    except Exception as e:
+        print("OTP send failed:", e)
 
     return {
         "message": "OTP sent successfully"

@@ -34,17 +34,14 @@ MindSpark Team
         msg["From"] = EMAIL
         msg["To"] = receiver_email
 
-        # Gmail SMTP connection
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.starttls()
-
-            # login using app password
+        # Gmail SMTP connection (SSL version - more stable on Render)
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(EMAIL, APP_PASSWORD)
-
             server.send_message(msg)
 
         print("OTP email sent successfully")
+        return True
 
     except Exception as e:
         print("Email sending failed:", str(e))
-        raise Exception("Failed to send OTP email")
+        return False
