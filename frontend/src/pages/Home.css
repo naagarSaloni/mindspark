@@ -1,0 +1,281 @@
+ .home-hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 120px 70px 80px;
+  overflow: hidden;
+}
+
+.home-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 6, 23, 0.88) 0%,
+    rgba(2, 6, 23, 0.7) 35%,
+    rgba(15, 23, 42, 0.35) 100%
+  );
+}
+
+.home-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.home-left {
+  max-width: 560px;
+}
+
+.home-left h1 {
+  font-size: 4.4rem;
+  line-height: 1.08;
+  font-weight: 800;
+  margin: 0 0 22px;
+  color: #ffffff;
+}
+
+.home-left h1 span {
+  color: #7c8cff;
+}
+
+.home-left p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 34px;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 38px;
+}
+
+.hero-btn {
+  padding: 16px 34px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.hero-btn.primary {
+  border: none;
+  color: white;
+  background: linear-gradient(90deg, #7c5cff, #4da3ff);
+  box-shadow: 0 10px 30px rgba(77, 163, 255, 0.28);
+}
+
+.hero-btn.primary:hover {
+  transform: translateY(-2px);
+}
+
+.hero-btn.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.hero-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.home-trusted {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.trusted-users {
+  display: flex;
+}
+
+.trusted-users span {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-left: -10px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(135deg, #94a3b8, #e2e8f0);
+}
+
+.trusted-users span:first-child {
+  margin-left: 0;
+}
+
+.home-trusted p {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.home-right {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  min-height: 500px;
+}
+
+.floating-card {
+  position: absolute;
+  color: white;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(32, 40, 86, 0.28);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+}
+
+.floating-card h3,
+.floating-card h4,
+.floating-card p {
+  margin: 0;
+}
+
+.small {
+  width: 170px;
+  padding: 22px 20px;
+}
+
+.small h4 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #f8fafc;
+}
+
+.small p {
+  color: #dbeafe;
+  font-size: 1rem;
+}
+
+.card-one {
+  top: 60px;
+  left: 70px;
+}
+
+.card-two {
+  top: 40px;
+  right: 20px;
+}
+
+.card-three {
+  top: 245px;
+  right: 0;
+}
+
+.main-card {
+  width: 360px;
+  padding: 30px 28px;
+  top: 190px;
+  left: 140px;
+}
+
+.main-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 28px;
+  color: #eef2ff;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.stats-row div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stats-row strong {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8cc8ff;
+  margin-bottom: 8px;
+}
+
+.stats-row span {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 1100px) {
+  .home-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-right {
+    max-width: 100%;
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding: 110px 22px 60px;
+  }
+
+  .home-left h1 {
+    font-size: 2.8rem;
+  }
+
+  .home-left p {
+    font-size: 1rem;
+  }
+
+  .home-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-btn {
+    width: 220px;
+  }
+
+  .home-trusted {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-right {
+    min-height: 540px;
+  }
+
+  .card-one {
+    top: 0;
+    left: 0;
+  }
+
+  .card-two {
+    top: 0;
+    right: 0;
+  }
+
+  .main-card {
+    width: calc(100% - 20px);
+    left: 10px;
+    top: 140px;
+  }
+
+  .card-three {
+    top: 370px;
+    right: 20px;
+  }
+}
