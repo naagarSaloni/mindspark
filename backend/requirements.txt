@@ -10,3 +10,4 @@ python-dotenv==1.1.0
 psycopg2-binary==2.9.10
 email-validator
 pypdf>=4.0.0
+google-genai
