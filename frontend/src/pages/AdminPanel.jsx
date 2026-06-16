@@ -1,6 +1,6 @@
  import { useEffect, useState } from "react"
 
-const API = "http://127.0.0.1:8000/api"
+const API = "https://mindspark-backend-264v.onrender.com/api"
 
 function AdminPanel() {
   const [users, setUsers] = useState([])

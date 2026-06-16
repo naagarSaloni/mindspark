@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API = "http://127.0.0.1:8000/api";
+const API = "https://mindspark-backend-264v.onrender.com/api";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");

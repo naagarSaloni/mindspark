@@ -22,7 +22,7 @@ function Result() {
     if (!attemptId) return;
 
     fetch(
-      `http://127.0.0.1:8000/api/attempts/attempt/${attemptId}/summary`
+      `https://mindspark-backend-264v.onrender.com/api/attempts/attempt/${attemptId}/summary`
     )
       .then((res) => res.json())
       .then((data) => setFeedback(data))

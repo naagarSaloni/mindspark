@@ -100,13 +100,13 @@ def get_student_ids(db: Session = Depends(get_db)):
 def add_student_id(admission_no: str, db: Session = Depends(get_db)):
 
     exists = db.query(StudentID).filter(
-        StudentID.admission_no == admission_no
+        StudentID.student_id == admission_no
     ).first()
 
     if exists:
         raise HTTPException(400, "Admission number already exists")
 
-    db.add(StudentID(admission_no=admission_no))
+    db.add(StudentID(student_id=admission_no))
     db.commit()
 
     return {"message": "Student ID added"}

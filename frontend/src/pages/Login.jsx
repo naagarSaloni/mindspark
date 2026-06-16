@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
-const API = 'http://127.0.0.1:8000/api'
+const API = 'https://mindspark-backend-264v.onrender.com/api'
 
 function Login() {
   const [form, setForm] = useState({ username: '', password: '' })

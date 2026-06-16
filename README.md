@@ -124,7 +124,7 @@ uvicorn app.main:app --reload
 Backend will run on:
 
 ```text
-http://127.0.0.1:8000
+https://mindspark-backend-264v.onrender.com
 ```
 
 ### Frontend Setup

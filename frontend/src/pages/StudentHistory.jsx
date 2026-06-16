@@ -12,7 +12,7 @@ import {
   Line
 } from 'recharts'
 
-const API = 'http://127.0.0.1:8000/api'
+const API = 'https://mindspark-backend-264v.onrender.com/api'
 
 function StudentHistory() {
   const { user, token } = useAuth()
