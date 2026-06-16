@@ -8,17 +8,17 @@ from app.core.config import settings
 from app.core.database import get_db
 from app.models.user import User
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(
+    schemes=["argon2"],
+    deprecated="auto"
+)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
-
 
 def hash_password(password: str):
     return pwd_context.hash(password)
 
-
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password[:72], hashed_password)
-
+def verify_password(plain_password: str, hashed_password: str):
+    return pwd_context.verify(plain_password, hashed_password)
 def create_access_token(data: dict):
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + timedelta(minutes=settings.access_token_expire_minutes)
