@@ -123,23 +123,7 @@ useEffect(() => {
     document.removeEventListener("visibilitychange", handleVisibilityChange)
 }, [exam])
 
-useEffect(() => {
-  const handleFullScreenChange = () => {
-    if (!document.fullscreenElement && exam) {
-      setTimeout(() => {
-        enterFullScreen()
-      }, 1000)
-    }
-  }
-
-
-  document.addEventListener("fullscreenchange", handleFullScreenChange)
-
-  return () => {
-    document.removeEventListener("fullscreenchange", handleFullScreenChange)
-  }
-}, [exam])
-
+ 
  
  
 
@@ -354,7 +338,7 @@ const handleSubmit = async () => {
           </div>
 
            <div className="btn-space">
-  <button className="button" onClick={handleSubmit()} disabled={submittinh}>
+  <button className="button" onClick={handleSubmit} disabled={submitting}>
     {loading ? 'Submitting...' : 'Submit Test'}
   </button>
 </div>
