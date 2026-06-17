@@ -14,25 +14,7 @@ function ForgotPassword() {
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
 
-  // STEP 1: send OTP
-  const sendOtpEmail = async (email, otp) => {
-  try {
-    const result = await emailjs.send(
-      "service_i31xjes",
-      "template_Iphoxte",
-      {
-        email: email,
-        otp: otp,
-      }
-    );
-
-    console.log("EMAIL SENT:", result.status);
-  } catch (error) {
-    console.error("EMAIL FAILED:", error);
-    throw error;
-  }
-};
-  const sendOtp = async (e) => {
+const sendOtp = async (e) => {
   e.preventDefault();
   setMessage("");
   setLoading(true);
@@ -51,6 +33,17 @@ function ForgotPassword() {
       return;
     }
 
+    // SEND EMAIL USING EMAILJS (ONLY HERE)
+    await emailjs.send(
+      "service_i31xjes",
+      "template_Iphoxte",
+      {
+        email: email,
+        otp: data.otp,
+      }
+    );
+
+    setOtp(data.otp); // optional (for testing)
     setMessage("OTP sent successfully ✔");
     setStep(2);
 

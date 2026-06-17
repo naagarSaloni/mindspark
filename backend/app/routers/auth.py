@@ -2,7 +2,6 @@ import random
 from datetime import datetime, timedelta
 
  
-from app.services.email_service import send_otp_email
 from fastapi import APIRouter, Depends, HTTPException
 from app.models.user import User
 from sqlalchemy.orm import Session
@@ -185,11 +184,11 @@ def forgot_password(payload: dict, db: Session = Depends(get_db)):
         "expires": datetime.now() + timedelta(minutes=5)
     }
 
-    # 🔥 SEND EMAIL HERE
-    send_otp_email(email, otp)
+    print("OTP GENERATED:", otp)  # 👈 IMPORTANT FOR DEBUG
 
     return {
-        "message": "OTP sent to email"
+        "message": "OTP generated",
+        "otp": otp   # 👈 TEMP FOR TESTING ONLY
     }
 @router.post("/verify-otp")
 def verify_otp(payload: dict):
