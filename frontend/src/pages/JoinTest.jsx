@@ -123,48 +123,63 @@ useEffect(() => {
     document.removeEventListener("visibilitychange", handleVisibilityChange)
 }, [exam])
 
- 
- 
- 
+ const enterFullScreen = async () => {
+  try {
+    if (document.fullscreenElement) return
 
-  const handleJoin = async () => {
-    setLoading(true)
-    setError('')
+    await document.documentElement.requestFullscreen()
 
-    try {
-      const res = await fetch(`${API}/exams/join`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          token: joinToken.trim().toUpperCase()
-        })
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        setError(parseError(data.detail))
-        setExam(null)
-        return
-      }
-      console.log("JOIN RESPONSE =", data)
-      console.log("QUESTIONS =", data.questions)
-      await enterFullScreen()
-      setExam(data)
-      setTimeLeft(data.timer_minutes * 60)
-startTimeRef.current = Date.now()
-setHasAutoSubmitted(false)
-      
-      setAnswers({})
-    } catch {
-      setError('Server error')
-    } finally {
-      setLoading(false)
-    }
+    console.log("FULLSCREEN SUCCESS")
+  } catch (err) {
+    console.error("FULLSCREEN FAILED:", err)
   }
+}
+ 
+ 
+
+   const handleJoin = async () => {
+  setLoading(true)
+  setError("")
+
+  try {
+    // FIRST enter fullscreen
+    await enterFullScreen()
+
+    // THEN call API
+    const res = await fetch(`${API}/exams/join`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        token: joinToken.trim().toUpperCase()
+      })
+    })``
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      setError(parseError(data.detail))
+      setExam(null)
+      return
+    }
+
+    console.log("JOIN RESPONSE =", data)
+
+    setExam(data)
+    setAnswers({})
+    setTimeLeft(data.timer_minutes * 60)
+    startTimeRef.current = Date.now()
+    setHasAutoSubmitted(false)
+
+  } catch (err) {
+    console.error(err)
+    setError("Server error")
+  } finally {
+    setLoading(false)
+  }
+}
 
   const handleAnswerChange = (idx, value) => {
     setAnswers((prev) => ({
@@ -173,21 +188,7 @@ setHasAutoSubmitted(false)
     }))
   }
  
-const enterFullScreen = async () => {
-  try {
-    const elem = document.documentElement
-
-    if (elem.requestFullscreen) {
-      await elem.requestFullscreen()
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen()
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen()
-    }
-  } catch (err) {
-    console.log("Fullscreen error:", err)
-  }
-}
+ 
  
 const formatTime = (sec) => {
   const minutes = Math.floor(sec / 60)
