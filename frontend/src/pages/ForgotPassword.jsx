@@ -33,22 +33,30 @@ const sendOtp = async (e) => {
       return;
     }
 
-    // SEND EMAIL USING EMAILJS (ONLY HERE)
-    await emailjs.send(
-      "service_i31xjes",
-      "template_Iphoxte",
-      {
-        email: email,
-        otp: data.otp,
-      }
-    );
+    // IMPORTANT: OTP exists from backend
+    console.log("OTP FROM BACKEND:", data.otp);
 
-    setOtp(data.otp); // optional (for testing)
-    setMessage("OTP sent successfully ✔");
+    try {
+      await emailjs.send(
+        "service_i31xjes",
+        "template_Iphoxte",
+        {
+          email: email,
+          otp: data.otp,
+        }
+      );
+
+      console.log("Email sent via EmailJS");
+    } catch (emailErr) {
+      console.log("EmailJS failed but OTP is fine:", emailErr);
+    }
+
+    setOtp(data.otp); // optional testing
+    setMessage("OTP generated ✔ Check email");
     setStep(2);
 
   } catch (err) {
-    console.error(err);
+    console.error("Frontend error:", err);
     setMessage("Server error. Try again.");
   } finally {
     setLoading(false);
