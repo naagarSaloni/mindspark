@@ -1,7 +1,8 @@
 import os
 import requests
 
-RESEND_API_KEY = os.getenv("re_PHNuLRKX_Jd26oi6mBxKb2hyz7Biitwo6")
+# ✅ correct way: env variable name
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 
 
 def send_otp_email(receiver_email: str, otp: str):
@@ -12,7 +13,7 @@ def send_otp_email(receiver_email: str, otp: str):
     url = "https://api.resend.com/emails"
 
     payload = {
-        "from": "MindSpark <noreply@yourdomain.com>",  # change this later after domain verification
+        "from": "MindSpark <onboarding@resend.dev>",  # use verified sender
         "to": [receiver_email],
         "subject": "MindSpark OTP Verification",
         "html": f"""
@@ -26,7 +27,7 @@ def send_otp_email(receiver_email: str, otp: str):
     }
 
     headers = {
-        "Authorization": f"Bearer {re_PHNuLRKX_Jd26oi6mBxKb2hyz7Biitwo6}",
+        "Authorization": f"Bearer {RESEND_API_KEY}",
         "Content-Type": "application/json"
     }
 
@@ -37,10 +38,12 @@ def send_otp_email(receiver_email: str, otp: str):
         print("EMAIL RESPONSE:", response.text)
 
         if response.status_code not in [200, 202]:
+            print("❌ Email sending failed")
             return False
 
+        print("✅ OTP EMAIL SENT SUCCESSFULLY")
         return True
 
     except Exception as e:
-        print("EMAIL ERROR:", str(e))
+        print("❌ EMAIL ERROR:", str(e))
         return False

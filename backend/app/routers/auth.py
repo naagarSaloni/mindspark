@@ -185,9 +185,11 @@ def forgot_password(payload: dict, db: Session = Depends(get_db)):
         "expires": datetime.now() + timedelta(minutes=5)
     }
 
+    # 🔥 SEND EMAIL HERE
+    send_otp_email(email, otp)
+
     return {
-        "message": "OTP generated",
-        "otp": otp   # IMPORTANT: send to frontend
+        "message": "OTP sent to email"
     }
 @router.post("/verify-otp")
 def verify_otp(payload: dict):
