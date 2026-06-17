@@ -221,7 +221,7 @@ function AdminPanel() {
             key={item.id}
             className="question-card"
           >
-            <strong>{item.admission_no}</strong>
+            <strong>{item.student_id}</strong>
 
             <button
               className="btn-delete"

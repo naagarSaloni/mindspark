@@ -317,10 +317,10 @@ const handleSubmit = async () => {
           />
 
           {error && <p className="error-text">{error}</p>}
-
+<div className="btn-space">
           <button className="button" onClick={handleJoin} disabled={loading}>
             {loading ? 'Opening...' : 'Open Test'}
-          </button>
+          </button></div>
         </section>
       ) : (
         <section className="panel result-panel">
@@ -379,13 +379,11 @@ const handleSubmit = async () => {
             ))}
           </div>
 
-          <button
-            className="button"
-            onClick={handleSubmit}
-            disabled={submitting}
-          >
-            {submitting ? 'Submitting...' : 'Submit Test'}
-          </button>
+           <div className="btn-space">
+  <button className="button" onClick={handleJoin} disabled={loading}>
+    {loading ? 'Submitting...' : 'Submit Test'}
+  </button>
+</div>
         </section>
       )}
     </main>

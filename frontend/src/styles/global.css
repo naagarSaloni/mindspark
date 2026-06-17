@@ -920,4 +920,6 @@ input[type="number"]::-webkit-inner-spin-button {
     overflow-x:auto;
   }
 }
- 
+.btn-space {
+  margin-top: 12px;
+}
