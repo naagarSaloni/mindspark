@@ -1,5 +1,6 @@
 import { useState } from "react"
-
+import emailjs from "@emailjs/browser";
+emailjs.init("nhi7lz_zd2bJAuYpF");
 const API = "https://mindspark-backend-264v.onrender.com/api"
 
 function ForgotPassword() {
@@ -14,34 +15,52 @@ function ForgotPassword() {
   const [loading, setLoading] = useState(false)
 
   // STEP 1: send OTP
-  const sendOtp = async (e) => {
-    e.preventDefault()
-    setMessage("")
-    setLoading(true)
-
-    try {
-      const res = await fetch(`${API}/auth/forgot-password`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        setMessage(data.detail || "Something went wrong")
-        return
+  const sendOtpEmail = async (email, otp) => {
+  try {
+    const result = await emailjs.send(
+      "service_i31xjes",
+      "template_Iphoxte",
+      {
+        email: email,
+        otp: otp,
       }
+    );
 
-      setMessage("OTP sent successfully ✔")
-      setStep(2)
-    } catch (err) {
-      setMessage("Server error. Try again.")
-    } finally {
-      setLoading(false)
-    }
+    console.log("EMAIL SENT:", result.status);
+  } catch (error) {
+    console.error("EMAIL FAILED:", error);
+    throw error;
   }
+};
+  const sendOtp = async (e) => {
+  e.preventDefault();
+  setMessage("");
+  setLoading(true);
 
+  try {
+    const res = await fetch(`${API}/auth/forgot-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setMessage(data.detail || "Server error");
+      return;
+    }
+
+    setMessage("OTP sent successfully ✔");
+    setStep(2);
+
+  } catch (err) {
+    console.error(err);
+    setMessage("Server error. Try again.");
+  } finally {
+    setLoading(false);
+  }
+};
   // STEP 2: reset password
   const resetPassword = async (e) => {
     e.preventDefault()
