@@ -4,16 +4,15 @@ An AI-powered online examination platform designed for educational institutions.
 
 ## Live Demo
 
-**Website:** https://your-project-url.vercel.app
+**Website:**  https://mindspark-pi-ten.vercel.app
 
-**Backend API:** https://your-api-url.onrender.com
+**Backend API:**  https://mindspark-backend-264v.onrender.com/api
 
 **Demo PDF** https://your-demo-video-link
 
 ## GitHub Repository
 
-https://github.com/yourusername/mindspark-ai-examination-system
-
+https://github.com/naagarSaloni/mindspark
 ---
 
 ## Overview
@@ -88,27 +87,20 @@ Students can securely join tests using unique access tokens, attempt examination
 
 ### Reports
 
-* PDF Export
 * Excel Export
-* Performance Reports
-* Evaluation Reports
-
 
 ## Local Setup
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/mindspark-ai-examination-system.git
-cd mindspark-ai-examination-system
+git clone https://github.com/naagarSaloni/mindspark
 ```
 
 ### Backend Setup
 
 ```bash
 cd backend
-
-python -m venv .venv
 
 # Windows
 .venv\Scripts\activate
