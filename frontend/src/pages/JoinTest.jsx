@@ -203,8 +203,9 @@ const showWarningPopup = (msg) => {
 }
 
 const handleSubmit = async () => {
+  console.log("SUBMIT BUTTON CLICKED")
   if (!exam) {
-    console.log("SUBMIT BUTTON CLICKED")
+     
     setError("Exam not loaded")
     return
   }
@@ -338,8 +339,16 @@ const handleSubmit = async () => {
           </div>
 
            <div className="btn-space">
-  <button className="button" onClick={handleSubmit} disabled={submitting}>
-    {loading ? 'Submitting...' : 'Submit Test'}
+  <button
+    type="button"
+    className="button"
+    disabled={submitting}
+    onClick={() => {
+      console.log("BUTTON CLICKED")
+      handleSubmit()
+    }}
+  >
+    {submitting ? 'Submitting...' : 'Submit Test'}
   </button>
 </div>
         </section>
