@@ -169,21 +169,14 @@ def me(current_user: User = Depends(get_current_user)):
         "unique_id": current_user.unique_id,
     }
 @router.post("/forgot-password")
-def forgot_password(
-    payload: dict,
-    db: Session = Depends(get_db)
-):
+def forgot_password(payload: dict, db: Session = Depends(get_db)):
+
     email = payload.get("email")
 
-    user = db.query(User).filter(
-        User.email == email
-    ).first()
+    user = db.query(User).filter(User.email == email).first()
 
     if not user:
-        raise HTTPException(
-            status_code=404,
-            detail="Email not registered"
-        )
+        raise HTTPException(status_code=404, detail="Email not registered")
 
     otp = str(random.randint(100000, 999999))
 
@@ -191,13 +184,12 @@ def forgot_password(
         "otp": otp,
         "expires": datetime.now() + timedelta(minutes=5)
     }
-    try:
-        send_otp_email(email, otp) 
-    except Exception as e:
-        print("OTP send failed:", e)
+
+    print("OTP FOR USER:", otp)  # for testing
 
     return {
-        "message": "OTP sent successfully"
+        "message": "OTP generated successfully",
+        "otp": otp   # TEMP (remove later if needed)
     }
 @router.post("/verify-otp")
 def verify_otp(payload: dict):
