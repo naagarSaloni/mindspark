@@ -277,9 +277,25 @@ const handleSubmit = async () => {
 
           {error && <p className="error-text">{error}</p>}
 <div className="btn-space">
-          <button className="button" onClick={handleJoin} disabled={loading}>
-            {loading ? 'Opening...' : 'Open Test'}
-          </button></div>
+          <button
+  className="button"
+  disabled={loading}
+  onClick={async () => {
+    console.log("BUTTON CLICK")
+
+    try {
+      await document.documentElement.requestFullscreen()
+      console.log("FULLSCREEN SUCCESS")
+    } catch (e) {
+      console.log("FULLSCREEN FAILED", e)
+    }
+
+    handleJoin()
+  }}
+>
+  {loading ? "Opening..." : "Open Test"}
+</button> 
+           </div>
         </section>
       ) : (
         <section className="panel result-panel">
