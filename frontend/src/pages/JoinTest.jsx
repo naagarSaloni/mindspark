@@ -83,7 +83,6 @@ const [warning, setWarning] = useState('')
       clearInterval(interval)
 
       if (!hasAutoSubmitted) {
-        setHasAutoSubmitted(true)
         handleSubmit()
       }
 
@@ -141,33 +140,7 @@ useEffect(() => {
   }
 }, [exam])
 
-useEffect(() => {
-  if (!exam) return
-
-  const total = exam.timer_minutes * 60
-  startTimeRef.current = Date.now()
-
-  const interval = setInterval(() => {
-    const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000)
-    const remaining = total - elapsed
-
-    if (remaining <= 0) {
-      setTimeLeft(0)
-      clearInterval(interval)
-
-      if (!hasAutoSubmitted) {
-        setHasAutoSubmitted(true)
-        handleSubmit()
-      }
-
-      return
-    }
-
-    setTimeLeft(remaining)
-  }, 1000)
-
-  return () => clearInterval(interval)
-}, [exam])
+ 
  
 
   const handleJoin = async () => {
@@ -247,10 +220,11 @@ const showWarningPopup = (msg) => {
 
 const handleSubmit = async () => {
   if (!exam) {
+    console.log("SUBMIT BUTTON CLICKED")
     setError("Exam not loaded")
     return
   }
-   if (submitting || hasAutoSubmitted) return
+   if (submitting) return
   setHasAutoSubmitted(true)
 
   setSubmitting(true)
@@ -380,7 +354,7 @@ const handleSubmit = async () => {
           </div>
 
            <div className="btn-space">
-  <button className="button" onClick={handleJoin} disabled={loading}>
+  <button className="button" onClick={handleSubmit()} disabled={submittinh}>
     {loading ? 'Submitting...' : 'Submit Test'}
   </button>
 </div>
