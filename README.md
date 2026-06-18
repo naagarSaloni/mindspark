@@ -8,7 +8,7 @@ An AI-powered online examination platform designed for educational institutions.
 
 **Backend API:**  https://mindspark-backend-264v.onrender.com/api
 
-**Demo PDF** https://your-demo-video-link
+**Demo PDF**  https://docs.google.com/document/d/1obV1TdGaMQjCrur4RZp90hCqT21wuPiC/edit?usp=sharing&ouid=113344461386956015367&rtpof=true&sd=true
 
 ## GitHub Repository
 
